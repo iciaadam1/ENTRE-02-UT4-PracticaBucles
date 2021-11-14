@@ -1,6 +1,6 @@
 import java.util.Random;
 /**
- *    ddddd
+ *    
  */
 public class PracticaBucles {
     private final char ESPACIO = ' ';
@@ -31,8 +31,25 @@ public class PracticaBucles {
      *   Utiliza solo bucles while
      */
     public void generarNumeros(int n)   {
-       //TODO
-
+    String str = "";
+    int sumaNumeros = 0;
+    int sumaImpares = 0;
+    int maximoPar = 0;
+    for(int i=1; i<=n; i++){
+        int numeroGenerado = generador.nextInt(4001)-1000;
+        sumaNumeros += numeroGenerado;
+        if(esImpar(numeroGenerado)){
+        sumaImpares = numeroGenerado;
+        }
+        else{
+        if(numeroGenerado>=maximoPar){
+         maximoPar = numeroGenerado;
+        }
+        }
+        }
+    int media = sumaNumeros/n;
+    System.out.println("Media: "+ media + "\nSuma impares: "+ sumaImpares + "\nMáximo pares: "+ maximoPar); 
+    
     }
 
     /**
@@ -40,10 +57,7 @@ public class PracticaBucles {
      *  Hazlo sin utilizar if
      */
     public boolean esImpar(int numero)   {
-        //TODO
-        
-        
-        return  false;
+        return numero % 2 != 0;
     }
 
     /**
@@ -56,11 +70,19 @@ public class PracticaBucles {
      *   
      */
     public int obtenerNumeroSinCeros(int numero)   {
-        //TODO
-        
-        
-        return 0;
-    }
+        int cifra = 0;
+        int numeroSin0 = 0;
+        int multiplicar = 1;
+        while(numero>0){ 
+        cifra = numero%10; 
+        if(cifra!=0){
+        numeroSin0 = numeroSin0 + cifra * multiplicar;
+        multiplicar = multiplicar*10;
+        }
+        numero = numero/10;
+        }
+        return numeroSin0;
+     }
 
     /**
      *  Borrar la pantalla
@@ -81,7 +103,19 @@ public class PracticaBucles {
      *   
      */
     public void escribirLetraN(int altura)    {
-       //TODO
+        String caracter = "@";
+        String str = "";
+        int fila = 0;
+        int col = 0;
+        int espacios1 = fila-1;
+        int espacios2 = altura-fila;
+        for(fila = 1; fila<=altura; fila++){
+        for(col = 3; col <=altura ; col++){
+            
+         
+        System.out.printf("\n%" + espacios1 + "@" );
+        }
+        }
 
     }
 
@@ -90,7 +124,9 @@ public class PracticaBucles {
      *  con bucles for
      */
     private void escribirCaracter(char caracter, int n)    {
-       //TODO
+       for(int i = 1; i<=n; i++){
+        System.out.print(caracter);
+        }
        
        
        
