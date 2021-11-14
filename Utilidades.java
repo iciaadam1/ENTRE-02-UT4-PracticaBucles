@@ -1,7 +1,7 @@
 import java.util.Scanner;
 /**
  *   Clase de utilidades
- *   Incluye métodos estáticos
+ *   Incluye métodos estáticossssssssssssssss
  */
 public class Utilidades
 {
@@ -10,7 +10,7 @@ public class Utilidades
     /**
      *  Hacer una pausa  
      */
-    public static void hacerPausa()    {
+    public static void hacerPdausa()    {
         System.out.println("\n\n\tIntro para continuar");
         teclado.nextLine();
 
