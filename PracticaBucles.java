@@ -31,25 +31,36 @@ public class PracticaBucles {
      *   Utiliza solo bucles while
      */
     public void generarNumeros(int n)   {
-    String str = "";
-    int sumaNumeros = 0;
-    int sumaImpares = 0;
-    int maximoPar = 0;
-    for(int i=1; i<=n; i++){
+        String str = "Numero máximo de aleatorios a generar " + n + "\no hasta que salga el 0\n\n";
+        int sumaNumeros = 0;
+        int sumaImpares = 0;
+        int maximoPar = 0;
+        int i=1;
         int numeroGenerado = generador.nextInt(4001)-1000;
-        sumaNumeros += numeroGenerado;
-        if(esImpar(numeroGenerado)){
-        sumaImpares = numeroGenerado;
+        while(i<n && numeroGenerado != 0){
+            for(int j = 1; j<=5; j++){
+                numeroGenerado = generador.nextInt(4001)-1000;
+                sumaNumeros += numeroGenerado;
+                if(esImpar(numeroGenerado)){
+                    sumaImpares = numeroGenerado;
+                }
+                else{
+                    if(numeroGenerado>=maximoPar){
+                        maximoPar = numeroGenerado;
+                    }
+                }
+                str += numeroGenerado + ":"  + obtenerNumeroSinCeros(numeroGenerado) + "   ";
+                i++;
+            }
+            str +="\n";
         }
-        else{
-        if(numeroGenerado>=maximoPar){
-         maximoPar = numeroGenerado;
-        }
-        }
-        }
-    int media = sumaNumeros/n;
-    System.out.println("Media: "+ media + "\nSuma impares: "+ sumaImpares + "\nMáximo pares: "+ maximoPar); 
-    
+        double media = sumaNumeros/n;
+        int espacios = 25;
+        str += String.format("\n%" + espacios + "s%10.2f","Media: ", media);
+        str += String.format("\n%" + espacios + "s%10d","Suma impares: ", sumaImpares);
+        str += String.format("\n%" + espacios + "s%10d","Máximo pares: ", maximoPar);
+        System.out.print(str);
+
     }
 
     /**
@@ -72,17 +83,17 @@ public class PracticaBucles {
     public int obtenerNumeroSinCeros(int numero)   {
         int cifra = 0;
         int numeroSin0 = 0;
-        int multiplicar = 1;
-        while(numero>0){ 
-        cifra = numero%10; 
-        if(cifra!=0){
-        numeroSin0 = numeroSin0 + cifra * multiplicar;
-        multiplicar = multiplicar*10;
-        }
-        numero = numero/10;
+        int multiplicacion = 1;
+        while(numero!=0){ 
+            cifra = numero%10; 
+            if(cifra!=0){
+                numeroSin0 = numeroSin0 + cifra * multiplicacion;
+                multiplicacion = multiplicacion*10;
+            }
+            numero = numero/10;
         }
         return numeroSin0;
-     }
+    }
 
     /**
      *  Borrar la pantalla
@@ -103,19 +114,21 @@ public class PracticaBucles {
      *   
      */
     public void escribirLetraN(int altura)    {
-        String caracter = "@";
+        System.out.print("\nLetra N - Altura: " + altura + "\n");
         String str = "";
-        int fila = 0;
-        int col = 0;
-        int espacios1 = fila-1;
-        int espacios2 = altura-fila;
-        for(fila = 1; fila<=altura; fila++){
-        for(col = 3; col <=altura ; col++){
-            
-         
-        System.out.printf("\n%" + espacios1 + "@" );
+        for(int fila = 1; altura>=fila; fila++){
+            escribirCaracter('@', 1);
+            for(int espacio1 = 1; espacio1<fila ; espacio1++){
+                System.out.print(ESPACIO);
+            }
+            escribirCaracter('@', 1);
+            for(int espacio2 = 1; espacio2<=altura-fila ; espacio2++){
+                System.out.print(ESPACIO);
+            }
+            escribirCaracter('@', 1);
+            System.out.print("\n");
         }
-        }
+        
 
     }
 
@@ -124,13 +137,8 @@ public class PracticaBucles {
      *  con bucles for
      */
     private void escribirCaracter(char caracter, int n)    {
-       for(int i = 1; i<=n; i++){
+        for(int i = 1; i<=n; i++){
         System.out.print(caracter);
         }
-       
-       
-       
-       
     }
-
 }
